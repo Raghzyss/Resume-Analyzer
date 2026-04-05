@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, Form
+from fastapi.middleware.cors import CORSMiddleware
 from backend.utils.pdf_parser import extract_text_from_pdf
 from backend.utils.preprocess import clean_text
 from backend.models.similarity import compute_similarity
@@ -6,6 +7,14 @@ from backend.utils.skill_extractor import extract_skills
 from backend.services.suggestions import generate_suggestions
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
