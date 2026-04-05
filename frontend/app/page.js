@@ -44,7 +44,7 @@ export default function Home() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:8000/analyze", {
+      const res = await fetch("https://resume-analyzer-a5fd.onrender.com/analyze", {
         method: "POST",
         body: formData,
       });
